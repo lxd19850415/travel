@@ -60,6 +60,9 @@ else{
       echo urldecode (stripslashes(json_encode($totalArray)));
 //      echo json_encode($totalArray);
     }//if
+    else{
+//      echo "无景点";
+    }
   }//while
 
 }

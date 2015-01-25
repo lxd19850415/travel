@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: travel
 Target Host: localhost
 Target Database: travel
-Date: 2015/1/25 23:49:44
+Date: 2015/1/26 0:09:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,6 +20,19 @@ CREATE TABLE `district` (
   `latitude` float NOT NULL,
   `width` float NOT NULL,
   `height` float default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for district_user
+-- ----------------------------
+DROP TABLE IF EXISTS `district_user`;
+CREATE TABLE `district_user` (
+  `id` int(11) NOT NULL auto_increment,
+  `district_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `msg` char(255) NOT NULL,
+  `audio_url` char(255) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -54,10 +67,25 @@ CREATE TABLE `poi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` char(255) NOT NULL,
+  `sex` char(255) NOT NULL,
+  `age` int(11) NOT NULL,
+  `vip` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Records 
 -- ----------------------------
 INSERT INTO `district` VALUES ('1', '人民广场', '1', '10', '10', '50', '50');
+INSERT INTO `district_user` VALUES ('1', '1', '1', '寻找同游的朋友', 'http://localhost/travel/audio/1/123.wav');
 INSERT INTO `map` VALUES ('1', '1', 'http://localhost/travel/map/1/123.jpg', '0', '10', '10');
 INSERT INTO `map` VALUES ('2', '1', 'http://localhost/travel/map/1/456.jpg', '1', '10', '10');
 INSERT INTO `poi` VALUES ('1', '1', '如家酒店', '宛平南路', '18512345678', '20', '26', '1');
 INSERT INTO `poi` VALUES ('2', '1', '家乐福', '零陵路', '18512345679', '34', '48', '2');
+INSERT INTO `user` VALUES ('1', '李明', '男', '123', '0');
