@@ -1,14 +1,11 @@
 <?php
 require("config.php");
+
+//测试地址：http://localhost/travel/getmap.php?l=10&r=10&w=50&h=60
   $left=$_GET['l'];
   $right=$_GET['r'];
   $width=$_GET['w'];
   $height=$_GET['h'];
-
-  $myServer= '127.0.0.1'; //主机
-  $myUser= 'root'; //用户名  
-  $myPass= 'root'; //密码  
-  $myDB= 'travel'; //库名
 
     $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME;
     $db = new PDO($dsn, DB_USER, DB_PWD);

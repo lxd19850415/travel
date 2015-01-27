@@ -1,15 +1,11 @@
 <?php
-
+require("config.php");
+//测试地址：http://localhost/travel/getaround.php?district_id=1
   $district_id=$_GET['district_id'];
 //  $filter=$_GET['filter'];
 
-  $myServer= 'localhost'; //主机  
-  $myUser= 'root'; //用户名  
-  $myPass= 'root'; //密码  
-  $myDB= 'travel'; //库名
-
-  $dsn = "mysql:host=localhost;dbname=".$myDB;
-  $db = new PDO($dsn, $myUser, $myPass);
+$dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME;
+$db = new PDO($dsn, DB_USER, DB_PWD);
 
   $strsql="select district_user.longitude, district_user.latitude,  user.name,user.sex,user.icon from user ,district_user
  where district_user.user_id = user.id and district_user.district_id='$district_id'";
