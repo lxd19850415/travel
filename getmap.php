@@ -1,17 +1,17 @@
 <?php
-
+require("config.php");
   $left=$_GET['l'];
   $right=$_GET['r'];
   $width=$_GET['w'];
   $height=$_GET['h'];
 
-  $myServer= 'localhost'; //主机  
+  $myServer= '127.0.0.1'; //主机
   $myUser= 'root'; //用户名  
   $myPass= 'root'; //密码  
   $myDB= 'travel'; //库名
 
-  $dsn = "mysql:host=localhost;dbname=".$myDB;
-  $db = new PDO($dsn, $myUser, $myPass);
+    $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME;
+    $db = new PDO($dsn, DB_USER, DB_PWD);
 
   $strsql="select * from district ";
   $db->query("SET NAMES utf8");
@@ -25,7 +25,6 @@ if($num == 0)
   echo '<p><h1>没有任何景区</h1></p>';
 }
 else{
-
   while($row = $rs->fetch()){
 
     if( rectInRect($left,$right,$width,$height
@@ -70,7 +69,7 @@ else{
 
 function xyInRect($x,$y,$rect_x,$rect_y,$rect_w,$rect_h)
 {
-  if(($x > $rect_x && $x <$rect_x +$rect_w) && ($y > $rect_y && $y <$rect_y +$rect_h) )
+  if(($x >= $rect_x && $x <=$rect_x +$rect_w) && ($y >= $rect_y && $y <=$rect_y +$rect_h) )
   {
     return true;
   }
